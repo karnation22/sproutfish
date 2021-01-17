@@ -51,8 +51,10 @@ def normalize_cols(pd_inp):
             if(col=='Salinity'):
                 (lw1,up1),(lw2,up2) = rel_bnd
                 pd_inp[col] = pd_inp[col].replace('30..9','30.9').replace('n.a','NaN').replace('Tank Closed','NaN') ## minor typo + NaNify everything...
-                pd_inp.loc[(pd_inp[col].astype(float)>=lw1)&(pd_inp[col].astype(float)<=up1),col]=(pd_inp.loc[(pd_inp[col].astype(float)>=lw1)&(pd_inp[col].astype(float)<=up1),col].astype(float)-lw1)/(up1-lw1)
-                pd_inp.loc[(pd_inp[col].astype(float)>=lw2)&(pd_inp[col].astype(float)<=up2),col]=(pd_inp.loc[(pd_inp[col].astype(float)>=lw2)&(pd_inp[col].astype(float)<=up2),col].astype(float)-lw2)/(up2-lw2)
+                pd_inp.loc[(pd_inp[col].astype(float)>=lw1)&(pd_inp[col].astype(float)<=up1),col]=
+                    (pd_inp.loc[(pd_inp[col].astype(float)>=lw1)&(pd_inp[col].astype(float)<=up1),col].astype(float)-lw1)/(up1-lw1)
+                pd_inp.loc[(pd_inp[col].astype(float)>=lw2)&(pd_inp[col].astype(float)<=up2),col]=
+                    (pd_inp.loc[(pd_inp[col].astype(float)>=lw2)&(pd_inp[col].astype(float)<=up2),col].astype(float)-lw2)/(up2-lw2)
                 
             else:
                 (lw,up)=rel_bnd
